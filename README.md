@@ -2,8 +2,7 @@
 
 ## Overview
 
-This project implements a modern SQL-based data warehouse and analytics solution designed to support analytical reporting and business decision-making. The project covers the full lifecycle from raw data ingestion and data modeling to analytical SQL queries that generate actionable business insights.
-The repository demonstrates core data engineering and data analytics concepts, including data cleansing, dimensional modeling, and analytical SQL development, following best practices commonly used in production data warehouse environments.
+This project is a hands-on implementation of a modern SQL-based data warehouse and analytics workflow, built to reinforce core data engineering and data analytics concepts. The project walks through the full lifecycle of transforming raw operational data into analytics-ready datasets, from data ingestion and cleansing to dimensional modeling and analytical SQL development.
 
 ### Key Features
 - End-to-end SQL-based data warehouse design
@@ -27,11 +26,27 @@ The data used in this project comes from two source systems:
 Both sources are provided as CSV files and represent the latest snapshot of operational data. Historical tracking is intentionally out of scope to focus on analytical modeling and querying.
 
 ## Data Warehouse Architecture
-The project follows a structured data warehousing approach designed for analytics use cases.
-### Data Ingestion & Cleansing
-- Raw data is imported from ERP and CRM CSV files into staging tables
-- Data quality issues such as missing values, inconsistent formats, and duplicate records are identified and resolved prior to loading analytics tables
-### Data Integration & Modeling
-- Data from both source systems is integrated into a unified data model
-- A user-friendly dimensional schema is created to support analytical queries
-- Fact and dimension tables are designed to optimize query performance and usability for reporting
+
+This project follows a Medallion Architecture approach with Bronze, Silver, and Gold layers, simulating a modern data warehouse workflow.
+### High-Level Architecture
+Sources → Data Warehouse → Consumption
+### 1. Bronze Layer – Raw Data
+- Stores data as-is from source systems (CSV files from ERP and CRM)
+- Ingested into SQL Server using batch processing (truncate & insert)
+- No transformations applied; retains original structure
+### 2. Silver Layer – Cleaned & Standardized Data
+- Performs data cleansing, standardization, normalization, and enrichment
+- Adds derived columns to improve analytics readiness
+- Batch loading with truncate & insert
+- Data remains in table format, optimized for intermediate processing
+### 3. Gold Layer – Business-Ready Data
+- Stores curated, analytics-ready datasets in star schema format
+- Includes fact and dimension tables, aggregated tables, and views
+- Applies business logic, integrations, and aggregations
+- Used for reporting, ad-hoc SQL queries, and analytics
+
+
+The Gold layer enables downstream use cases such as:
+Power BI dashboards and other BI tools
+Ad-hoc SQL analysis for decision-making
+Basic machine learning and analytical workflows

@@ -10,13 +10,16 @@ This project is a hands-on implementation of a modern SQL-based data warehouse a
 - Dimensional modeling optimized for analytics
 - Business-focused analytical SQL queries
 
-## Tools & Technologies
+## Workflow
 
-- Database: SQL Server
-- Languages: SQL
-- Data Modeling: Dimensional modeling (fact and dimension tables)
-- Analytics: SQL-based analytical queries
-- Data Sources: CSV files (ERP and CRM systems)
+1. Extract:
+- Load CSV files from ERP and CRM network locations into staging tables.
+2. Transform:
+- Clean and normalize data
+- Resolve missing values and data inconsistencies
+- Create derived columns (e.g., customer segments, product metrics)
+3. Load:
+- Insert cleaned and modeled data into Silver and Gold tables/views for analytics
 
 ## Data Sources
 
@@ -45,8 +48,9 @@ Sources → Data Warehouse → Consumption
 - Applies business logic, integrations, and aggregations
 - Used for reporting, ad-hoc SQL queries, and analytics
 
+### Consumption
 
 The Gold layer enables downstream use cases such as:
-Power BI dashboards and other BI tools
-Ad-hoc SQL analysis for decision-making
-Basic machine learning and analytical workflows
+- Power BI dashboards and other BI tools
+- Ad-hoc SQL analysis for decision-making
+- Basic machine learning and analytical workflows
